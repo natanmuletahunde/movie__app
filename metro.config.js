@@ -1,7 +1,13 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require('expo/metro-config');
+// Learn more https://docs.expo.dev/guides/customizing-metro
+const { getDefaultConfig } = require("expo/metro-config");
+const { withNativeWind } = require("nativewind/metro");
 
-/** @type {import('expo/metro-config').MetroConfig} */
+// Get default Expo config
 const config = getDefaultConfig(__dirname);
 
-module.exports = config;
+// Export config with NativeWind
+module.exports = withNativeWind(config, {
+  input: "./app/globals.css",
+  inlineRem: 16,
+  configPath: "./tailwind.config.js",
+});
