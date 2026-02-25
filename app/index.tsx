@@ -1,11 +1,13 @@
 import { Text, View } from "react-native";
+import "./global.css";
 
 export default function Index() {
   return (
     <View className="flex-1 items-center justify-center bg-gray-100">
       <Text className="text-blue-600 text-xl font-bold">
-        Hello world
+        Hello world 
       </Text>
     </View>
-  );
+  ); 
 }
+
