@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import { Tabs } from 'expo-router'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+import {images} from  "@/constants/images"
 
 const _layout = () => {
   return (
     <Tabs>
-      
+
       <Tabs.Screen
       name='index'
       options={{
@@ -13,7 +14,30 @@ const _layout = () => {
         headerShown:false
       }}
       />
-          </Tabs>
+       <Tabs.Screen
+      name='saved'
+      options={{
+        title:'Saved',
+        headerShown:false
+      }}
+      />
+       <Tabs.Screen
+      name='search'
+      options={{
+        title:'Search',
+        headerShown:false
+      }}
+      />
+       <Tabs.Screen
+      name='profile'
+      options={{
+        title:'Profile',
+        headerShown:false
+      }}
+      />
+
+
+</Tabs>
   )
 }
 
