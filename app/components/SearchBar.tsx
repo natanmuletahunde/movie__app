@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const profile = () => {
+const SearchBar = () => {
   return (
     <View>
-      <Text> profile </Text>
+      <Text>SearchBar</Text>
     </View>
   )
 }
 
-export default profile
+export default SearchBar
 
 const styles = StyleSheet.create({})
