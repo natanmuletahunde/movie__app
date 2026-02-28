@@ -5,13 +5,10 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Dimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSavedMoviesStore, SavedMovie } from "@/store/savedMoviesStore";
 import { icons } from "@/constants/icons";
-
-const { width } = Dimensions.get("window");
 
 const SavedMovieCard = ({ movie, onRemove }: { movie: SavedMovie; onRemove: () => void }) => {
   const router = useRouter();
