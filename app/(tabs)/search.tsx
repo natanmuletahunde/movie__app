@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, ActivityIndicator, FlatList, Image } from "react-native";
 
-import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
+import { icons } from "@/constants/icons";
 
-import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/usefetch";
+import { fetchMovies } from "@/services/api";
+import { updateSearchCount } from "@/services/appwrite";
 
-import MovieDisplayCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
+import MovieDisplayCard from "@/components/MovieCard";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,6 +31,11 @@ const Search = () => {
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
+
+        // Call updateSearchCount only if there are results
+        if (movies?.length! > 0 && movies?.[0]) {
+          await updateSearchCount(searchQuery, movies[0]);
+        }
       } else {
         reset();
       }
