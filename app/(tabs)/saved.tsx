@@ -9,6 +9,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSavedMoviesStore, SavedMovie } from "@/store/savedMoviesStore";
 import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
 
 const SavedMovieCard = ({ movie, onRemove }: { movie: SavedMovie; onRemove: () => void }) => {
   const router = useRouter();
@@ -55,44 +56,50 @@ const Save = () => {
   const { savedMovies, removeMovie } = useSavedMoviesStore();
 
   return (
-    <SafeAreaView className="flex-1 bg-primary px-5">
-      <Text className="text-3xl font-bold text-white mt-6 mb-6">Saved Movies</Text>
-
-      {savedMovies.length === 0 ? (
-        <View className="flex-1 justify-center items-center">
-          <Image
-            source={icons.save}
-            className="size-24 opacity-30"
-            tintColor="#fff"
-          />
-          <Text className="text-light-300 text-lg mt-4">
-            No saved movies yet
-          </Text>
-          <Text className="text-light-400 text-sm mt-2 text-center">
-            Tap the bookmark icon on any movie to save it here
-          </Text>
-        </View>
-      ) : (
-        <FlatList
-          data={savedMovies.filter((item: SavedMovie, index: number, self: SavedMovie[]) => 
-            index === self.findIndex((m: SavedMovie) => m.id === item.id)
-          )}
-          numColumns={2}
-          columnWrapperStyle={{
-            justifyContent: "space-between",
-          }}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 100 }}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <SavedMovieCard
-              movie={item}
-              onRemove={() => removeMovie(item.id)}
+    <View className="flex-1 bg-primary">
+      <Image
+        source={images.bg}
+        className="absolute w-full z-0"
+        resizeMode="cover"
+      />
+      
+      <SafeAreaView className="flex-1 px-5">
+        {savedMovies.length === 0 ? (
+          <View className="flex-1 justify-center items-center">
+            <Image
+              source={icons.save}
+              className="size-24 opacity-30"
+              tintColor="#fff"
             />
-          )}
-        />
-      )}
-    </SafeAreaView>
+            <Text className="text-light-300 text-lg mt-4">
+              No saved movies yet
+            </Text>
+            <Text className="text-light-400 text-sm mt-2 text-center">
+              Tap the bookmark icon on any movie to save it here
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={savedMovies.filter((item: SavedMovie, index: number, self: SavedMovie[]) => 
+              index === self.findIndex((m: SavedMovie) => m.id === item.id)
+            )}
+            numColumns={2}
+            columnWrapperStyle={{
+              justifyContent: "space-between",
+            }}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingTop: 100, paddingBottom: 100 }}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <SavedMovieCard
+                movie={item}
+                onRemove={() => removeMovie(item.id)}
+              />
+            )}
+          />
+        )}
+      </SafeAreaView>
+    </View>
   );
 };
 

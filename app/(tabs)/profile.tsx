@@ -3,6 +3,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSavedMoviesStore, SavedMovie } from "@/store/savedMoviesStore";
 import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
 
 const ProfileOption = ({
   icon,
@@ -31,8 +32,15 @@ const Profile = () => {
   const savedMovies = useSavedMoviesStore((state: { savedMovies: SavedMovie[] }) => state.savedMovies);
 
   return (
-    <SafeAreaView className="flex-1 bg-primary px-5">
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <View className="flex-1 bg-primary">
+      <Image
+        source={images.bg}
+        className="absolute w-full z-0"
+        resizeMode="cover"
+      />
+      
+      <SafeAreaView className="flex-1 px-5">
+        <ScrollView showsVerticalScrollIndicator={false}>
         <View className="items-center mt-6 mb-8">
           <View className="w-24 h-24 rounded-full bg-secondary/20 items-center justify-center mb-4">
             <Image source={icons.person} className="size-14" tintColor="#fff" />
@@ -65,7 +73,7 @@ const Profile = () => {
         <ProfileOption
           icon={icons.person}
           title="Edit Profile"
-          onPress={() => {}}
+          onPress={() => router.push("/profile/edit-profile")}
         />
         <ProfileOption
           icon={icons.save}
@@ -75,22 +83,23 @@ const Profile = () => {
         <ProfileOption
           icon={icons.play}
           title="App Theme"
-          onPress={() => {}}
+          onPress={() => router.push("/profile/app-theme")}
         />
         <ProfileOption
           icon={icons.star}
           title="Notifications"
-          onPress={() => {}}
+          onPress={() => router.push("/profile/notifications")}
         />
         <ProfileOption
           icon={icons.logo}
           title="About App"
-          onPress={() => {}}
+          onPress={() => router.push("/profile/about-app")}
         />
 
         <View className="h-24" />
       </ScrollView>
     </SafeAreaView>
+    </View>
   );
 };
 
