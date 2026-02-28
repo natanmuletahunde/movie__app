@@ -13,14 +13,12 @@ const AboutApp = () => {
           <Text className="text-white text-xl font-bold">Movie App</Text>
           <Text className="text-light-400 text-sm mt-1">Version 1.0.0</Text>
         </View>
-
         <View className="bg-secondary/10 rounded-xl p-4 mb-4">
           <Text className="text-white text-base font-medium mb-2">Description</Text>
           <Text className="text-light-300 text-sm leading-5">
             Your ultimate movie companion app. Browse trending movies, search for your favorites, and save them for later viewing. Stay updated with the latest releases and discover new films every day.
           </Text>
         </View>
-
         <View className="bg-secondary/10 rounded-xl p-4 mb-4">
           <Text className="text-white text-base font-medium mb-3">Features</Text>
           <Text className="text-light-300 text-sm mb-2">• Browse trending movies</Text>
@@ -28,7 +26,6 @@ const AboutApp = () => {
           <Text className="text-light-300 text-sm mb-2">• Save favorites</Text>
           <Text className="text-light-300 text-sm mb-2">• View movie details</Text>
         </View>
-
         <View className="bg-secondary/10 rounded-xl p-4 mb-4">
           <Text className="text-white text-base font-medium mb-3">Powered By</Text>
           <Text className="text-light-300 text-sm mb-2">• The Movie Database (TMDB)</Text>
