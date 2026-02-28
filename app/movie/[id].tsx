@@ -84,7 +84,7 @@ import useFetch from "@/services/usefetch";
               </Text>
             </View>
 
-            <MovieInfo label="Overview" value={movie?.overview} />
+            <MovieInfo label="Overrrview" value={movie?.overview} />
             <MovieInfo
               label="Genres"
               value={movie?.genres?.map((g) => g.name).join(" • ") || "N/A"}

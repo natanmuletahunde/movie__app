@@ -75,7 +75,9 @@ import TrendingCard from "@/components/TrendingCard";
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     className="mb-4 mt-3"
-                    data={trendingMovies}
+                    data={trendingMovies?.filter((item: TrendingMovie, index: number, self: TrendingMovie[]) => 
+                      index === self.findIndex((m: TrendingMovie) => m.movie_id === item.movie_id)
+                    )}
                     contentContainerStyle={{
                       gap: 26,
                     }}
@@ -94,7 +96,9 @@ import TrendingCard from "@/components/TrendingCard";
                 </Text>
 
                 <FlatList
-                  data={movies}
+                  data={movies?.filter((item: Movie, index: number, self: Movie[]) => 
+                    index === self.findIndex((m: Movie) => m.id === item.id)
+                  )}
                   renderItem={({ item }) => <MovieCard {...item} />}
                   keyExtractor={(item) => item.id.toString()}
                   numColumns={3}

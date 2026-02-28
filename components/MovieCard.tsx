@@ -2,6 +2,7 @@ import { Link } from "expo-router";
 import { Text, Image, TouchableOpacity, View } from "react-native";
 
 import { icons } from "@/constants/icons";
+import { useSavedMoviesStore, SavedMovie } from "@/store/savedMoviesStore";
 
 const MovieCard = ({
   id,
@@ -9,19 +10,49 @@ const MovieCard = ({
   title,
   vote_average,
   release_date,
+  overview,
+  backdrop_path,
 }: Movie) => {
+  const { isMovieSaved, toggleMovie } = useSavedMoviesStore();
+  const saved = isMovieSaved(id);
+
+  const handleSave = () => {
+    const movie: SavedMovie = {
+      id,
+      title,
+      poster_path,
+      release_date,
+      vote_average,
+      overview: overview || "",
+      backdrop_path,
+    };
+    toggleMovie(movie);
+  };
+
   return (
     <Link href={`/movie/${id}`} asChild>
       <TouchableOpacity className="w-[30%]">
-        <Image
-          source={{
-            uri: poster_path
-              ? `https://image.tmdb.org/t/p/w500${poster_path}`
-              : "https://placehold.co/600x400/1a1a1a/FFFFFF.png",
-          }}
-          className="w-full h-52 rounded-lg"
-          resizeMode="cover"
-        />
+        <View className="relative">
+          <Image
+            source={{
+              uri: poster_path
+                ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                : "https://placehold.co/600x400/1a1a1a/FFFFFF.png",
+            }}
+            className="w-full h-52 rounded-lg"
+            resizeMode="cover"
+          />
+          <TouchableOpacity
+            onPress={handleSave}
+            className="absolute top-2 right-2 bg-black/50 p-1.5 rounded-full"
+          >
+            <Image
+              source={icons.save}
+              className="size-5"
+              tintColor={saved ? "#FFD700" : "#fff"}
+            />
+          </TouchableOpacity>
+        </View>
 
         <Text className="text-sm font-bold text-white mt-2" numberOfLines={1}>
           {title}
